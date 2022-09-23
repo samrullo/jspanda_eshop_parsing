@@ -3,7 +3,7 @@ import json
 
 import pandas as pd
 
-from rakuten_order_parsing_utils import RakutenOrder, get_orders_url, get_order_item_wraps, get_order_list_items, \
+from rakuten_parsing_with_beautiful_soup.rakuten_order_parsing_utils import RakutenOrder, get_orders_url, get_order_list_items, \
     get_orders_url_soup, get_rakuten_session
 import logging
 from logging_utils.init_logging import init_logging
@@ -32,7 +32,7 @@ while True:
 logging.info(f"retrieved total of {len(rakuten_orders)}")
 logging.info("next will store them into json file")
 orders_file = "rakuten_orders.json"
-with open(os.path.join("./data", "rakuten_orders.json"), "w") as fh:
+with open(os.path.join("../data", "rakuten_orders.json"), "w") as fh:
     for order in rakuten_orders:
         fh.write(json.dumps(order.to_dict(), default=str))
 logging.info(f"finished writing into {orders_file}")
@@ -42,5 +42,5 @@ orders_df_list = []
 for order in rakuten_orders:
     orders_df_list.append(order.to_dataframe())
 rakuten_orders_df = pd.concat(orders_df_list)
-rakuten_orders_df.to_csv(os.path.join("./data", "rakuten_orders.csv"))
+rakuten_orders_df.to_csv(os.path.join("../data", "rakuten_orders.csv"))
 logging.info(f"rakuten orders dataframe size : {len(rakuten_orders_df)}")

@@ -5,10 +5,13 @@ import pickle
 import os
 import re
 import pandas as pd
+import pathlib
+import selenium
+from selenium.webdriver.common.by import By
 
 
-def get_rakuten_creds():
-    cred_folder = r"/Users/samrullo/PycharmProjects/jspanda_eshop_parsing/credentials"
+def get_rakuten_creds(folder: pathlib.Path):
+    cred_folder = folder
     creds_file = "rakuten_credentials.pkl"
     with open(os.path.join(cred_folder, creds_file), "rb") as fh:
         creds = pickle.load(fh)
@@ -118,3 +121,4 @@ class RakutenOrderItem:
         img_element = img_p_element.find("img")
         img_url = img_element.attrs['src']
         return img_url
+
