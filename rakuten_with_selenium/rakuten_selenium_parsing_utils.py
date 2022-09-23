@@ -5,10 +5,10 @@ import selenium
 from selenium.webdriver.common.by import By
 
 
-def get_rakuten_creds(folder: pathlib.Path):
-    cred_folder = folder
-    creds_file = "rakuten_credentials.pkl"
-    with open(os.path.join(cred_folder, creds_file), "rb") as fh:
+def get_rakuten_creds(creds_folder: pathlib.Path, creds_file_name: str = "rakuten_credentials.pkl"):
+    cred_folder = creds_folder
+    creds_file = creds_file_name
+    with open(cred_folder/creds_file, "rb") as fh:
         creds = pickle.load(fh)
         return creds
 
