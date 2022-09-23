@@ -28,7 +28,7 @@ login_button = login_buttons[0]
 login_button.click()
 
 # fill in username and password and press submit
-rakuten_creds = get_rakuten_creds(pathlib.Path(r"path to credentials pickel file which is a dictionary with username and password"))
+rakuten_creds = get_rakuten_creds(pathlib.Path(r"path to credentials folder"),creds_file_name="credentials pickel file name which is a dictionary with username and password")
 user_id = driver.find_element(By.NAME, "u")
 user_id.send_keys(rakuten_creds["u"])
 pasw = driver.find_element(By.NAME, "p")
